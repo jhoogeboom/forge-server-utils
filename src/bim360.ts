@@ -5,7 +5,7 @@ const ReadTokenScopes = ['data:read', 'account:read'];
 const WriteTokenScopes = ['data:create', 'data:write'];
 const PageSize = 64;
 
-interface IHub {
+export interface IHub {
     id: string;
 
     name?: string;
@@ -13,7 +13,7 @@ interface IHub {
     extension?: object;
 }
 
-interface IProject {
+export interface IProject {
     id: string;
 
     name?: string;
@@ -21,7 +21,7 @@ interface IProject {
     extension?: object;
 }
 
-interface IStorageLocation {
+export interface IStorageLocation {
     id: string;
 
     resourceId?: string;
@@ -33,7 +33,7 @@ export enum ResourceType {
     Items = 'items'
 }
 
-interface IFolder {
+export interface IFolder {
     id: string;
 
     name?: string; // The name of the folder.
@@ -49,14 +49,14 @@ interface IFolder {
     extension?: object; // The extension object of the data.
 }
 
-interface IItem {
+export interface IItem {
     id: string;
     type: string;
 
     extension?: object;
 }
 
-interface IItemDetails {
+export interface IItemDetails {
     id: string;
     type: string;
 
@@ -79,7 +79,7 @@ interface IItemDetails {
     versionNumber?: number; // version number of tip version
 }
 
-interface IVersion {
+export interface IVersion {
     id: string;
     type: string;
 
@@ -100,7 +100,7 @@ interface IVersion {
     extension?: object; // The extension object of the data.
 }
 
-interface IIssue {
+export interface IIssue {
     id: string; // Unique issue ID. Can be used in other API calls.
     answer?: string; // The suggested answer for the issue.
     answered_at?: string; // The date and time the issue was answered, in the following format: YYYY-MM-DDThh:mm:ss.sz.
@@ -150,7 +150,7 @@ interface IIssue {
     updated_at?: string; // The last time the issue’s attributes were updated, in the following format: YYYY-MM-DDThh:mm:ss.sz.
 }
 
-interface INewIssue {
+export interface INewIssue {
     title: string; // The title of the issue.
     ng_issue_subtype_id: string; // The ID of the issue subtype. To find the issue subtype that corresponds to the ID, call GET ng-issue-types, with the include=subtypes query string parameter.
     ng_issue_type_id: string; // The ID of the issue type. To find the issue type that corresponds to the ID, call GET ng-issue-types. (Note that issues that were created in the Document issues module prior to the release of the latest version of the Issues API, are automatically assigned the design issue type. For more details, see the changelog.)
@@ -169,7 +169,7 @@ interface INewIssue {
     quality_urns?: object; // The resource in the Checklists service that this issue is related to.
 }
 
-interface IUpdateIssue {
+export interface IUpdateIssue {
     title: string; // The title of the issue.
 
     ng_issue_subtype_id?: string; // The ID of the issue subtype. To find the issue subtype that corresponds to the ID, call GET ng-issue-types, with the include=subtypes query string parameter.
@@ -188,7 +188,7 @@ interface IUpdateIssue {
     quality_urns?: object; // The resource in the Checklists service that this issue is related to.
 }
 
-interface IIssueComment {
+export interface IIssueComment {
     id: string;
 
     body?: string; // The content of the comment.
@@ -199,7 +199,7 @@ interface IIssueComment {
     updated_at?: string; // The last time the comment’s attributes were updated, in the following format: YYYY-MM-DDThh:mm:ss.sz.
 }
 
-interface IIssueAttachment {
+export interface IIssueAttachment {
     id: string;
 
     created_at?: string; // The timestamp of the date and time the attachment was created, in the following format: YYYY-MM-DDThh:mm:ss.sz.
@@ -219,19 +219,19 @@ interface IIssueAttachment {
     permitted_actions?: any[]; // A list of actions that are permitted for the current user.
 }
 
-interface INewIssueAttachment {
+export interface INewIssueAttachment {
     name: string; // The name of the attachment.
     urn: string; // The URN of the file you are attaching to the issue.
     urn_type: string; // The type of attachment. Possible value: dm.
     issue_id: string; // The ID of the issue associated with the attachment.
 }
 
-interface IIssueRootCause {
+export interface IIssueRootCause {
     key: string; // The unique key of the root cause.
     title: string; // The name of the root cause.
 }
 
-interface IIssueType {
+export interface IIssueType {
     id: string; // The ID of the issue type for the project.
     containerId?: string; // The ID of the container for the project.
     title?: string; // The name of the issue type.
@@ -247,7 +247,7 @@ interface IIssueType {
     subtypes?: any[]; // An array of data about the issue subtypes associated with the issue type.
 }
 
-interface IIssueFilter {
+export interface IIssueFilter {
     owner?: string; // ID of the owner of the issue
     target_urn?: string; // Retrieves pushpin issues associated with the specified file. Only relevant for pushpin issues. A pushpin is a visual marker that denotes the location of a issue in a document.
     due_date?: Date | [Date, Date]; // Retrieves issues due by the specified due date. Value can be either a Date object specifying the due date, or an array of two Date objects specifying the range.
@@ -258,12 +258,12 @@ interface IIssueFilter {
     ng_issue_subtype_id?: string; // Retrieves issues associated with the specified issue subtype. To verify the ID, call GET ng-issue-types, with the include=subtypes query string parameter.
 }
 
-interface IPage {
+export interface IPage {
     offset: number; // Offset in the complete list of records.
     limit: number; // Number of records to return in the response payload. Acceptable values: 1-100. Default value: 10.
 }
 
-interface IUser {
+export interface IUser {
     id: string; // User ID
     account_id?: string; // Account ID
     /*
@@ -308,7 +308,7 @@ interface IUser {
     updated_at?: string; // YYYY-MM-DDThh:mm:ss.sssZ format
 }
 
-interface IUserFilter {
+export interface IUserFilter {
     name?: string; // User name to match (max length: 255)
     email?: string; // User email to match (max length: 255)
     company_name?: string; // User company to match (max length: 255)
@@ -316,7 +316,7 @@ interface IUserFilter {
     partial?: boolean; // If true (default), perform a fuzzy match
 }
 
-interface ILocationNode {
+export interface ILocationNode {
     id: string; // Node id
     parentId?: string; // Parent node Id, null if this is the root node
     type?: string; // Not relevant
@@ -465,7 +465,7 @@ export class BIM360Client extends ForgeClient {
      * @param {ResourceType} resourceType The type of this resource. Possible values: folders, items.
      * @param {string} resourceId Id of the resource.
      * @param {string} [xUserId] Optional API will act on behalf of specified user Id.
-     * @returns {Promise<IStorageLocation>} A storage location. 
+     * @returns {Promise<IStorageLocation>} A storage location.
      */
     async createStorageLocation(projectId: string, fileName: string, resourceType: ResourceType, resourceId: string, xUserId?: string): Promise<IStorageLocation> {
         const headers: { [key: string]: string } = {};
